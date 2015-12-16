@@ -7,7 +7,6 @@ class TextClassifier:
         self.medicalVoc = self.fillVocabulary("medical.txt")
         self.energyVoc = self.fillVocabulary("energy.txt")
         self.stopwords = self.fillVocabulary("stopwords.txt")
-        print self.medicalVoc
 
     def classify_text(self,text):
         words = self.remove_common_words(str.split(text))
@@ -33,10 +32,9 @@ class TextClassifier:
                 result += 1
         return result
 
+
     def classify(self, numberOfMedical, numberOfEnergy, total):
-        return 1.0*numberOfMedical/total, 
-               1.0*numberOfEnergy/total, 
-               1.0*(total-numberOfMedical-numberOfEnergy)/total
+        return 1.0*numberOfMedical/total, 1.0*numberOfEnergy/total, 1.0*(total-numberOfMedical-numberOfEnergy)/total
        
     def remove_common_words(self,sentence):
         result = []
