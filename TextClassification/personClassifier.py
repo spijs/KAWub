@@ -8,7 +8,7 @@ class PersonClassifier:
         return ["health","medic","nurse","bio","healthcare","doctor ", "MD"]
 
     def fillEngineer(self):
-        return ["engineer","physic","scientist","technology" "chemic","material","energy","computer","mathematics"]
+        return ["engineer","physic","scientist","technology" "chemi","material","energy","computer","mathematics"]
 
     def classify_text(self,text):
         med = 0

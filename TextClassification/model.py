@@ -44,9 +44,9 @@ def processPolitician(politician, pclass):
 
 def usePoliticianData(pclass, p_med, p_eng, p_other):
 	print ('politician: ',pclass)
-	print ('p_med:', p_med)
-	print ('p_eng:', p_eng)
-	print ('p_other:', p_other)
+	#print ('p_med:', p_med)
+	#print ('p_eng:', p_eng)
+	#print ('p_other:', p_other)
 
 
 # TODO remove
