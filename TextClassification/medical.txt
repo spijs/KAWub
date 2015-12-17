@@ -17,9 +17,8 @@ black-and-blue
 bleed
 blister
 blood
-blood pressure
+pressure
 blood type
-blurred vision
 bone
 braces
 breathe
@@ -35,7 +34,6 @@ cavity
 chart
 chills
 chronic
-circulatory system
 clinic
 clot
 coma
@@ -57,7 +55,7 @@ diagnose
 diagnosis
 diarrhea
 diet
-digestive system
+digestive
 disease
 disinfect
 disorder
@@ -66,7 +64,7 @@ dose
 dosage
 dose
 drug
-emergency room
+emergency
 epidemic
 exam
 examination
@@ -88,7 +86,7 @@ heart
 heartbeat
 height
 hygienist
-hypodermic needle
+hypodermic
 ill
 illness
 immune
@@ -98,7 +96,6 @@ infection
 inflammation
 injury
 inoculation
-intensive care
 jaundice
 jaw
 joints
@@ -129,7 +126,6 @@ pain
 painful
 pediatrician
 physical
-physical therapy
 physician
 pill
 placebo
@@ -148,13 +144,12 @@ reaction
 recover
 recovery
 reflex
-respiratory system
+respiratory
 runny nose
 scab
 scale
 scalpel
 scan
-second opinion
 seizure
 shock
 shot

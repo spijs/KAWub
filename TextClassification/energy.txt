@@ -1,26 +1,25 @@
 absorb
 AC
 accumulator
-alternating current
-anthracite coal
+alternating
+anthracite
 appliance
 battery
 biodiesel
 biofuel
 biomass
-bituminous coal
+bituminous
 blackout
 boiler
-British thermal unit
 Btu
 capacity
 carbon
 carbon footprint
 carbon tax
 charcoal
-chemical energy
+chemical
 clean energy
-climate change
+climate
 coal
 coke
 combustion
@@ -30,7 +29,6 @@ current
 dam
 DC
 diesel
-direct current
 drill
 dynamo
 efficiency
@@ -38,7 +36,7 @@ efficient
 electric
 electrical
 electrical grid
-electromagnetic energy
+electromagnetic
 electron
 energy
 engine
@@ -47,11 +45,10 @@ entropy
 environment
 erg
 ethanol
-fossil fuel
-flexible fuel
+fossil
 flywheel
 fuel
-fuel cell
+cell
 furnace
 gas
 gasoline
@@ -63,11 +60,10 @@ geothermal
 global warming
 green
 green energy
-greenhouse effect
-greenhouse gas
+greenhouse
+gas
 grid
 heat
-heat exchange
 high-voltage
 horsepower
 human-powered
@@ -77,18 +73,16 @@ hydroelectric
 hydrogen
 hydrothermal
 industry
-internal combustion engine
 inverter
 jet fuel
 joule
 Kelvin scale
 kilowatt
 kilowatt-hour
-kinetic energy
+kinetic
 light
 LPG
-liquefied petroleum gas
-magnetic energy
+magnetic
 megawatt
 methane
 methanol
@@ -96,9 +90,6 @@ mining
 motor
 natural gas
 nuclear
-nuclear energy
-nuclear power
-nuclear reactor
 nucleus
 off-the-grid
 oil
@@ -108,11 +99,8 @@ peat
 petroleum
 photon
 photovoltaic
-photovoltaic panel
 pollution
-potential energy
 power
-power grid
 power lines
 power plant
 power station
@@ -123,7 +111,6 @@ radiant
 radiate
 radiation
 reactor
-reciprocating engine
 reflect
 renewable
 reservoir
@@ -140,7 +127,7 @@ sunshine
 sustainable
 temperature
 therm
-thermal energy
+thermal
 thermodynamics
 tidal power
 transmission lines
@@ -153,7 +140,7 @@ watt
 wattage
 wave power
 wind
-wind farm
+windfarm
 windmill
 wind power
-wind turbine
+windturbine

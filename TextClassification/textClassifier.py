@@ -13,9 +13,9 @@ class TextClassifier:
         total = len(words)
         numberOfMedical = self.getNumberOfOccurences(words,self.medicalVoc)
         numberOfEnergy = self.getNumberOfOccurences(words,self.energyVoc)
-        print("total words", total)
-        print("total medical", numberOfMedical)
-        print("total energy", numberOfEnergy)
+        #print("total words", total)
+        #print("total medical", numberOfMedical)
+        #print("total energy", numberOfEnergy)
         return self.classify(numberOfMedical, numberOfEnergy, total)
 
     def fillVocabulary(self,file):

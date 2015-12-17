@@ -1,8 +1,10 @@
 import json
+import unicodedata
 import argparse
 from pprint import pprint
 from personClassifier import PersonClassifier
 from textClassifier import TextClassifier
+from SPARQLWrapper import SPARQLWrapper, JSON
 
 t = TextClassifier()
 
@@ -11,26 +13,49 @@ def main(params):
 	    data = json.load(data_file)
 
 	p = PersonClassifier()
-	med = 0
-	eng = 0
-	other = 0
+	c_med = 0
+	c_eng = 0
+	c_other = 0
+	c_law = 0
+	results = {"med":[0,0,0], "eng":[0,0,0], "other":[0,0,0], "law":[0,0,0]}
+	progress = 0
+
 	for politician in data:
 		pclass =  p.classify_person(politician)
 		if pclass == "med":
-			med += 1
+			c_med += 1
 		elif pclass == "eng":
-			eng += 1
+			c_eng += 1
+		elif pclass == "law":
+			c_law += 1		
 		else :
-			other +=1
-		processPolitician(politician['purl'], pclass)
+			c_other +=1
+		p_med,p_eng,p_other = processPolitician(politician['purl'])
+		results = add_values(results, [p_med, p_eng, p_other], pclass)
+		print ("progress:",1.0*progress/len(data))
+		progress += 1
+	print ("total meds:",c_med)
+	print ("total eng:",c_eng)
+	print ("total law:",c_law)
+	print ("total other:",c_other)
+	print ("med:",divide_array(results['med'],c_med))
+	print ("eng:",divide_array(results['eng'],c_eng))
+	print ("law:",divide_array(results['law'],c_law))
+	print ("other",divide_array(results['other'],c_other))
 
-	print ("med:",med)
-	print ("eng:",eng)
-	print ("other",other)
+def divide_array(a, nominator):
+	for i in range(len(a)):
+		a[i] = (1.0*a[i])/nominator
+	return a
 
+def add_values(result, new, pclass):
+	ar = result[pclass]
+	for i in range(3):
+		ar[i] = ar[i] + new[i]
+	result[pclass]= ar
+	return result
 
-
-def processPolitician(politician, pclass):
+def processPolitician(politician):
 	speeches = getSpeeches(politician)
 	p_med = 0
 	p_eng = 0
@@ -40,18 +65,42 @@ def processPolitician(politician, pclass):
 		p_med += s_med
 		p_eng += s_eng
 		p_other += s_other
-	usePoliticianData(pclass, p_med, p_eng, p_other)
+	total = len(speeches)
+	print total
+	if total==0:
+		return 0,0,0
+	else:
+		return p_med/total, p_eng/total, p_other/total
 
-def usePoliticianData(pclass, p_med, p_eng, p_other):
-	print ('politician: ',pclass)
-	#print ('p_med:', p_med)
-	#print ('p_eng:', p_eng)
-	#print ('p_other:', p_other)
-
-
-# TODO remove
 def getSpeeches(politician):
-	return ["this is an example speech with one medical word"]
+    polSpeeches = []
+    sparql = SPARQLWrapper("http://linkedpolitics.ops.few.vu.nl/sparql/")
+    sparql.setQuery("""
+        PREFIX lpv: <http://purl.org/linkedpolitics/vocabulary/>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX dbp: <http://dbpedia.org/property/>
+
+        SELECT DISTINCT ?text
+        WHERE {
+          ?speech lpv:text ?text.
+          ?speech lpv:speaker ?speaker.
+
+          FILTER(?speaker = <""" + politician + """>)
+          FILTER(langMatches(lang(?text), "en"))
+        }
+    """)
+    sparql.setReturnFormat(JSON)
+
+    results = sparql.query().convert()
+
+
+    for speech in results["results"]["bindings"]:
+    	text = speech["text"]["value"]
+    	text = text.encode("utf-8")
+        polSpeeches.append(text)
+    return polSpeeches
+    
 
 ''' Parses the given arguments'''
 if __name__ == "__main__":

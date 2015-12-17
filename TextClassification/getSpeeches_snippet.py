@@ -1,43 +1,33 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 
-def getSpeeches(politicians):
+def getSpeeches(politician):
     polSpeeches = []
-    polCount = 0
+    sparql = SPARQLWrapper("http://linkedpolitics.ops.few.vu.nl/sparql/")
+    sparql.setQuery("""
+        PREFIX lpv: <http://purl.org/linkedpolitics/vocabulary/>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX dbp: <http://dbpedia.org/property/>
 
-    for politician in politicians:
-        sparql = SPARQLWrapper("http://linkedpolitics.ops.few.vu.nl/sparql/")
-        sparql.setQuery("""
-            PREFIX lpv: <http://purl.org/linkedpolitics/vocabulary/>
-            PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-            PREFIX owl: <http://www.w3.org/2002/07/owl#>
-            PREFIX dbp: <http://dbpedia.org/property/>
+        SELECT DISTINCT ?text
+        WHERE {
+          ?speech lpv:text ?text.
+          ?speech lpv:speaker ?speaker.
 
-            SELECT DISTINCT ?text
-            WHERE {
-              ?speech lpv:text ?text.
-              ?speech lpv:speaker ?speaker.
+          FILTER(?speaker = <""" + politician + """>)
+          FILTER(langMatches(lang(?text), "en"))
+        }
+    """)
+    sparql.setReturnFormat(JSON)
 
-              FILTER(?speaker = <""" + politician["purl"] + """>)
-              FILTER(langMatches(lang(?text), "en"))
-            }
-        """)
-        sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
 
-        results = sparql.query().convert()
-        count = 0
 
-        newdict = {"name": politician["name"], "purl": politician["purl"]}
-        polSpeeches.append(newdict)
-
-        for speech in results["results"]["bindings"]:
-            polSpeeches[polCount]["speech" + str(count)] = speech["text"]["value"]
-            count += 1
-
-        polCount += 1
-
-    print(polSpeeches)
-
+    for speech in results["results"]["bindings"]:
+        polSpeeches.append(speech["text"]["value"])
+    return polSpeeches
+    
 
 politicians = [{"name": "De Guy", "purl": "http://purl.org/linkedpolitics/EUmember_97058"}]
 getSpeeches(politicians)
