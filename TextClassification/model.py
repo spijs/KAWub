@@ -6,20 +6,19 @@ from personClassifier import PersonClassifier
 from textClassifier import TextClassifier
 from SPARQLWrapper import SPARQLWrapper, JSON
 
-t = TextClassifier()
+''' This class is the model we use to retrieve the topic distributions per educational background category'''
 
+t = TextClassifier()
+''' First determines the educational background of a politician then process the speeches of each politician and aggregates these results.
+    Finally the results are aggregated for each category of educational background'''
 def main(params):
+	# Open politician data
 	with open('kaw.json') as data_file:    
 	    data = json.load(data_file)
 
 	p = PersonClassifier()
-	c_med = 0
-	c_eng = 0
-	c_other = 0
-	c_law = 0
+	c_med, c_eng, c_other, c_law, progress = 0,0,0,0,0
 	results = {"med":[0,0,0], "eng":[0,0,0], "other":[0,0,0], "law":[0,0,0]}
-	progress = 0
-
 	for politician in data:
 		pclass =  p.classify_person(politician)
 		if pclass == "med":
@@ -34,6 +33,10 @@ def main(params):
 		results = add_values(results, [p_med, p_eng, p_other], pclass)
 		print ("progress:",1.0*progress/len(data))
 		progress += 1
+	printResults(c_med,c_eng,c_law,c_other,results)
+
+''' Prints the results of the model'''
+def printResults(c_med,c_eng,c_law,c_other,results):
 	print ("total meds:",c_med)
 	print ("total eng:",c_eng)
 	print ("total law:",c_law)
@@ -43,11 +46,13 @@ def main(params):
 	print ("law:",divide_array(results['law'],c_law))
 	print ("other",divide_array(results['other'],c_other))
 
+''' Divides an array by a nominal denominator '''
 def divide_array(a, nominator):
 	for i in range(len(a)):
 		a[i] = (1.0*a[i])/nominator
 	return a
 
+''' Adds a 'new' array to the array corresponding to 'pclass' in 'result' '''
 def add_values(result, new, pclass):
 	ar = result[pclass]
 	for i in range(3):
@@ -55,6 +60,7 @@ def add_values(result, new, pclass):
 	result[pclass]= ar
 	return result
 
+''' Processes the speeches of a single politician '''
 def processPolitician(politician):
 	speeches = getSpeeches(politician)
 	p_med = 0
@@ -72,6 +78,7 @@ def processPolitician(politician):
 	else:
 		return p_med/total, p_eng/total, p_other/total
 
+''' Retrieves the speeches of a politician '''
 def getSpeeches(politician):
     polSpeeches = []
     sparql = SPARQLWrapper("http://linkedpolitics.ops.few.vu.nl/sparql/")

@@ -1,3 +1,5 @@
+'''This class is used to classify the educational background of a person'''
+
 class PersonClassifier:
 
     def __init__(self):
@@ -5,15 +7,19 @@ class PersonClassifier:
         self.engineerVoc = self.fillEngineer()
         self.lawVoc = self.fillLawyer()
 
+    ''' Fills the medical dataset'''
     def fillMedical(self):
-        return ["health","medic","nurse","bio","healthcare","doctor ", "MD"]
+        return ["health","medic","nurse","bio","healthcare","doctor ", "MD","hospital"]
 
+    ''' Fills the engineering dataset'''
     def fillEngineer(self):
         return ["engineer","physic","scientist","technology" "chemi","material","energy","computer","mathematics"]
 
+    ''' Fills the law dataset'''
     def fillLawyer(self):
         return ["law","lawyer","rights", "jugdge", "justice", "court", "prosecut", "attorney"]
 
+    ''' Classifies and counts the words in the medical, engineer or law dataset'''
     def classify_text(self,text):
         med = 0
         eng = 0
@@ -29,6 +35,7 @@ class PersonClassifier:
                 law += 1
         return med, eng, law
 
+    ''' Classifies a person in either medical, engineer, law or other'''
     def classify_person(self, person):
         med = 0
         eng = 0
