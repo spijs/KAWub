@@ -29,7 +29,6 @@ burn
 cancer
 care
 cartilage
-cast
 cavity
 chart
 chills
@@ -76,7 +75,6 @@ first aid
 flu
 fracture
 gland
-growth
 headache
 heal
 health
@@ -92,6 +90,7 @@ illness
 immune
 immune system
 immunization
+insurance
 infection
 inflammation
 injury
@@ -134,8 +133,6 @@ pneumonia
 poison
 practitioner
 prescription
-pressure
-procedure
 pulse
 pus
 quarantine
@@ -175,9 +172,7 @@ swab
 swollen
 symptom
 syndrome
-temperature
 tendon
-test
 therapy
 therapeutic
 toxic
