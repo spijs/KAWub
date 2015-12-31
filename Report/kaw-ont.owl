@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/lennert/ontologies/2015/11/KnowledgeAndTheWeb"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/lennert/ontologies/2015/11/KnowledgeAndTheWeb">
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Declaration>
+        <Class IRI="#dbo:Person"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#lpv:Speaker"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#lpv_eu:Speech"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#dc:creator"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="owl:SameAs"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dbo:abstract"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dbo:almaMater"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dbp:profession"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#foaf:name"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#lpv:translatedText"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="rdf:type"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="rdfs:comment"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="owl:SameAs"/>
+            <Class IRI="#dbo:Person"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#dbo:abstract"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#dbo:almaMater"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#dbp:profession"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <DataSomeValuesFrom>
+            <DataProperty abbreviatedIRI="rdf:type"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#dbo:Person"/>
+        <DataSomeValuesFrom>
+            <DataProperty abbreviatedIRI="rdfs:comment"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#lpv:Speaker"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#foaf:name"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#lpv_eu:Speech"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#dc:creator"/>
+            <Class IRI="#lpv:Speaker"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#lpv_eu:Speech"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#lpv:translatedText"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#dbo:Person"/>
+        <Class IRI="#lpv_eu:Speech"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#lpv:Speaker"/>
+        <Class IRI="#lpv_eu:Speech"/>
+    </DisjointClasses>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#dc:creator"/>
+    </FunctionalObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty abbreviatedIRI="owl:SameAs"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="owl:SameAs"/>
+        <Class IRI="#lpv:Speaker"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="owl:SameAs"/>
+        <Class IRI="#dbo:Person"/>
+    </ObjectPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
