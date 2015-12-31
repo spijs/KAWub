@@ -1,6 +1,7 @@
+import unicodedata
 from SPARQLWrapper import SPARQLWrapper, JSON
 
-
+''' Retrieves the speeches of a politician '''
 def getSpeeches(politician):
     polSpeeches = []
     sparql = SPARQLWrapper("http://linkedpolitics.ops.few.vu.nl/sparql/")
@@ -25,10 +26,7 @@ def getSpeeches(politician):
 
 
     for speech in results["results"]["bindings"]:
-        polSpeeches.append(speech["text"]["value"])
+    	text = speech["text"]["value"]
+    	text = text.encode("utf-8")
+        polSpeeches.append(text)
     return polSpeeches
-    
-
-politicians = [{"name": "De Guy", "purl": "http://purl.org/linkedpolitics/EUmember_97058"}]
-getSpeeches(politicians)
-
