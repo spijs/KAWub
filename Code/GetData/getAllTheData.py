@@ -86,6 +86,6 @@ stats = processStatistics(stats, "abstract", "profession", "type", "almaMater", 
 pp = pprint.PrettyPrinter(indent=4)
 pp.pprint(stats)
 
-fo = open("kaw_data.json", "w+")
+fo = open("kaw.json", "w+")
 fo.write(json.dumps(politicians, separators=(',', ':')))
 fo.close()
